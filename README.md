@@ -45,9 +45,8 @@ This website will track bands and the venues where they've played concerts
 
 * The Equals method for the Band class will return true if the Band in local memory matches the Band pulled from the database.
   * Example Input:  
-  > Local: "Green Day" , id is 1
-  >
-  > Database: "Green Day" , id is 1
+> Local: "Green Day" , id is 1
+> Database: "Green Day" , id is 1
   * Example Output: `true`
 
 * The Save method for the Band class will save new bands to the database.
