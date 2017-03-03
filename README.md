@@ -1,5 +1,5 @@
 # Band Tracker Database
-### _Site to view band booking and venue_
+### Site to view band booking and venue
 
 #### By _**Minh Phuong**_
 
@@ -8,8 +8,7 @@
 This website will track bands and the venues where they've played concerts
 
 ## Setup/Installation Requirements
-*Create Databases*
-================
+##### Create Database and Tables
 * In a command window:
 ```sql
 > sqlcmd -S "(localdb)\mssqllocaldb"
@@ -32,29 +31,27 @@ This website will track bands and the venues where they've played concerts
 
 ## Specifications
 
-##### Recipe Class
+#### Band Class
 
-* The DeleteAll method for the Recipe class will delete all rows from the recipes table.
+* The DeleteAll method for the Band class will delete all rows from the bands table.
   * Example Input: none
   * Example Output: nothing
 
 
 
-##### Ingredient class
+#### Ingredient class
 
 
-##### Recipe && Ingredient classes
+#### Recipe && Ingredient classes
 
-##### User Interface
+#### User Interface
 
 
-===
 
 ## Support and contact details
 
 Please contact Minh Phuong mphuong@kent.edu with any questions, concerns, or suggestions.
 
-===
 
 ## Technologies Used
 
@@ -72,4 +69,4 @@ This web application uses:
 
 *This project is licensed under the MIT license.*
 
-Copyright (c) 2017 ** Minh Phuong_**
+Copyright (c) 2017 _**Minh Phuong**_
