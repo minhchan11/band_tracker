@@ -33,8 +33,8 @@ namespace BandTrackerApp
     public void OverrideBool_SameBand_ReturnsEqual()
     {
       //Arrange, Act
-      Band bandOne = new Band ("Peasant");
-      Band bandTwo = new Band ("Peasant");
+      Band bandOne = new Band ("Green Day");
+      Band bandTwo = new Band ("Green Day");
 
       //Assert
       Assert.Equal(bandTwo, bandOne);
@@ -44,7 +44,7 @@ namespace BandTrackerApp
     public void Save_OneBand_BandSavedToDatabase()
     {
       //Arrange
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
 
       //Act
       testBand.Save();
@@ -59,7 +59,7 @@ namespace BandTrackerApp
     public void Save_OneBand_BandSavedWithCorrectID()
     {
       //Arrange
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
       Band savedBand = Band.GetAll()[0];
 
@@ -75,9 +75,9 @@ namespace BandTrackerApp
     public void SaveGetAll_ManyBands_ReturnListOfBands()
     {
       //Arrange
-      Band bandOne = new Band ("Peasant");
+      Band bandOne = new Band ("Green Day");
       bandOne.Save();
-      Band bandTwo = new Band ("Delicious");
+      Band bandTwo = new Band ("Spice Girl");
       bandTwo.Save();
 
       //Act
@@ -92,7 +92,7 @@ namespace BandTrackerApp
     public void Find_OneBandId_ReturnBandFromDatabase()
     {
       //Arrange
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
 
       //Act
@@ -106,11 +106,11 @@ namespace BandTrackerApp
     public void SearchName_Name_ReturnBandFromDatabase()
     {
       //Arrange
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
 
       //Act
-      List<Band> output = Band.SearchName("Peasant");
+      List<Band> output = Band.SearchName("Green Day");
       List<Band> verify = new List<Band>{testBand};
 
       //Assert
@@ -121,9 +121,9 @@ namespace BandTrackerApp
     public void AddVenue_OneBand_VenueAddedToJoinTable()
     {
       //Arrange
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
-      Venue testVenue = new Venue("Pot Pie");
+      Venue testVenue = new Venue("Park");
       testVenue.Save();
       testBand.AddVenue(testVenue);
 
@@ -136,9 +136,50 @@ namespace BandTrackerApp
     }
 
     [Fact]
+    public void DeleteVenue_TwoVenueRemoveOne_VenueRemovedFromJoinTable()
+    {
+      //Arrange
+      Band testBand = new Band ("Green Day");
+      testBand.Save();
+      Venue testVenue1 = new Venue("Park");
+      Venue testVenue2 = new Venue("Manhattan Square");
+      testVenue1.Save();
+      testVenue2.Save();
+      testBand.AddVenue(testVenue1);
+      testBand.AddVenue(testVenue2);
+      testBand.DeleteVenue(testVenue1);
+
+      //Act
+      List<Venue> output = testBand.GetVenues();
+      List<Venue> verify = new List<Venue>{testVenue2};
+
+      //Assert
+      Assert.Equal(verify, output);
+    }
+
+    [Fact]
+    public void DeleteVenues_OneBand_VenueRemovedFromJoinTable()
+    {
+      //Arrange
+      Band testBand = new Band ("Green Day");
+      testBand.Save();
+      Venue testVenue1 = new Venue("Park");
+      Venue testVenue2 = new Venue("Manhattan Square");
+      testVenue1.Save();
+      testVenue2.Save();
+      testBand.DeleteVenues();
+
+      //Act
+      int output = testBand.GetVenues().Count;
+      //Assert
+      Assert.Equal(0, output);
+    }
+
+
+    [Fact]
     public void Band_Delete_RemoveObjectFromDatabase()
     {
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
 
       testBand.DeleteThis();
@@ -149,11 +190,11 @@ namespace BandTrackerApp
     [Fact]
     public void Band_Update_UpdateDatabaseAndLocalObject()
     {
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
 
-      testBand.Update("Ultra Poor");
-      Band expectedBand = new Band("Ultra Poor", testBand.GetId());
+      testBand.Update("Yellow Day");
+      Band expectedBand = new Band("Yellow Day", testBand.GetId());
 
       Assert.Equal(expectedBand, Band.Find(testBand.GetId()));
     }
@@ -161,9 +202,9 @@ namespace BandTrackerApp
     [Fact]
     public void Band_Save_NoSaveOnDuplicateBand()
     {
-      Band testBand = new Band ("Peasant");
+      Band testBand = new Band ("Green Day");
       testBand.Save();
-      Band secondBand = new Band ("Peasant");
+      Band secondBand = new Band ("Green Day");
       secondBand.Save();
 
       Assert.Equal(1, Band.GetAll().Count);

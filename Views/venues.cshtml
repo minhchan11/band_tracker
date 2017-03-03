@@ -1,0 +1,50 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+<div class="well">
+  <h2>ALL VENUES</h2>
+  <div class="form-group">
+    <form action="/venues/search" method="post" id="search">
+          <input type="text" name="search-venue" id="search-venue" class="form-control"  placeholder="Search" >
+            <button type="submit" class="waves-effect waves-light btn search-button">
+            <span class="glyphicon glyphicon-search"></span>Search a venue
+            </button>
+        </div>
+    </form>
+
+  @if(@Model["Venues"].Count== 0)
+  {
+    <h5> Your venue list is empty </h5>
+  }
+  else
+  {
+    <ol>
+    @foreach (var venue in @Model["Venues"])
+    {
+      <li><a href="/venues/@venue.GetId()"> @venue.GetName()</a></li>
+    }
+    </ol>
+  }
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">Add a new venue</div>
+  <div class="panel-body">
+    <form action="/venues" method="post" id="new-venue">
+    <div class="form-group">
+      <label for="venue-name" class="col-2">Name:</label>
+      <input type="text" name="venue-name" id="venue-name" class="form-control col-10">
+    </div>
+    <button type="submit" name="button" class="btn">Add New Venue</button>
+    </div>
+</div>
+</form>
+
+<form action="/venues" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button" class="btn btn-mgd btn-block btn-danger">Delete All Venues</button>
+</form>
+<br>
+  <a href="/bands">See all bands</a><br>
+  <a href="/">Home Page</a>

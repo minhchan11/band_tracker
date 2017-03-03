@@ -1,0 +1,87 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h2> Information for @Model["venue"].GetName()</h2>
+
+<div class="panel panel-success">
+  <div class="panel-heading">All the bands for for @Model["venue"].GetName()</div>
+  <div class="panel-body">
+    @if(@Model["venue-bands"].Count == 0)
+    {
+      <p>There is no band that booked this venue yet</p>
+    }
+    else
+    {
+      <ol>
+      @foreach (var band in @Model["venue-bands"])
+      {
+        <li> @band.GetName()</li>
+      }
+    </ol>
+      }
+
+    </div>
+  </div>
+
+  <div class="panel panel-warning">
+    <div class="panel-heading">Edit information for @Model["venue"].GetName()</div>
+    <div class="panel-body">
+      <form action="/venue/edit/@Model["venue"].GetId()" method="post" id="update">
+        <input type="hidden" name="_method" value="PATCH">
+        <input name="venue-id" type="hidden" value="@Model["venue"].GetId()">
+        <div class="form-group">
+          <label for="venue-name" class="col-2">New Name:</label>
+          <input id="venue-name" name="venue-name" type="text" class="form-control col-10">
+        </div>
+      <button type="submit" class="btn">Edit</button>
+      </form>
+      <hr/>
+      <form action="/venue/addBand/@Model["venue"].GetId()" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <div class="form-group">
+        <label for="add-new-band">Add a band</label>
+        <select name = "add-new-band" class="form-control col-10">
+          <option value="0"></option>
+          @foreach (var band in @Model["Bands"])
+          {
+            <option value="@band.GetId()">@band.GetName()</option>
+          }
+        </select>
+        </div>
+      <button type="submit" class="btn">Add Band</button>
+    </form>
+    <hr/>
+    <form action="/venue/removeBand/@Model["venue"].GetId()" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <div class="form-group">
+      <label for="remove-band">Remove a band</label>
+      <select name="remove-band" class="form-control col-10">
+        <option value="0"></option>
+        @foreach (var bands in @Model["venue-bands"])
+        {
+          <option value="@bands.GetId()">@bands.GetName()</option>
+        }
+      </select>
+      </div>
+    <button type="submit" class="btn btn-md btn-primary">Remove Band</button>
+  </form>
+<hr/>
+  <form action="/venue/removeBands/@Model["venue"].GetId()" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit" class="btn delete-button">Remove all bands for this venue</button>
+  </form>
+    </div>
+  </div>
+
+
+
+<form action="/venue/@Model["venue"].GetId()/deleted" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button" class="btn btn-block deleteAll-button">Delete this Venue</button>
+</form>
+<br>
+<div class="row">
+  <a href="/bands">See all bands</a><br>
+  <a href="/venues">See all venues</a><br>
+  <a href="/">Home Page</a>

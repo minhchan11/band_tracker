@@ -205,7 +205,7 @@ namespace BandTrackerApp
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM bands_venues (venue_id, band_id) WHERE venue_id = @VenueId AND band_id = @BandId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands_venues WHERE venue_id = @VenueId AND band_id = @BandId;", conn);
       cmd.Parameters.Add(new SqlParameter("@VenueId", newVenue.GetId().ToString()));
       cmd.Parameters.Add(new SqlParameter("@BandId", this.GetId().ToString()));
       cmd.ExecuteNonQuery();
@@ -217,7 +217,7 @@ namespace BandTrackerApp
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM bands_venues (venue_id, band_id) WHERE band_id = @BandId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands_venues WHERE band_id = @BandId;", conn);
       cmd.Parameters.Add(new SqlParameter("@BandId", this.GetId().ToString()));
       cmd.ExecuteNonQuery();
 

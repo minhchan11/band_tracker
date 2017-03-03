@@ -1,0 +1,60 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+<div class="row">
+  <h2>ALL BANDS</h2>
+
+      <div class="form-group">
+        <form action="/bands/search" method="post" id="search">
+              <input type="text" name="search-band" id="search-band" class="form-control"  placeholder="Search" >
+                <button type="submit" class="waves-effect waves-light btn search-button">
+                <span class="glyphicon glyphicon-search"></span>Search a band
+                </button>
+            </div>
+        </form>
+
+  @if(@Model["Bands"].Count== 0)
+  {
+    <h5> Your band list is empty </h5>
+  }
+  else
+  {
+    <ol>
+    @foreach (var band in @Model["Bands"])
+    {
+      <li><a href="/bands/@band.GetId()"> @band.GetName()</a></li>
+    }
+    </ol>
+  }
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">Add a new band</div>
+  <div class="panel-body">
+    <form action="/bands" method="post" id="new-band">
+    <div class="form-group">
+      <label for="band-name" class="col-2">Name:</label>
+      <input type="text" name="band-name" id="band-name" class="form-control col-10">
+    </div>
+    <div class="form-group">
+      <label for="add-venue" class="col-2">Add a new venue for band:</label>
+      <select name="add-venue" class="form-control col-10">
+        <option value="0"></option>
+        @foreach (var venue in @Model["Venues"])
+        {
+          <option value="@venue.GetId()">@venue.GetName()</option>
+        }
+      </select>
+    </div>
+    <button type="submit" name="button" class="btn">Add New Band</button>
+    </div>
+</div>
+</form>
+
+<form action="/bands" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button" class="btn btn-block delete-button">Delete All Bands</button>
+</form>
+<br>
+  <a href="/venues">See all venues</a><br>
+  <a href="/">Home Page</a>
