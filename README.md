@@ -45,51 +45,57 @@ This website will track bands and the venues where they've played concerts
 
 * The Equals method for the Band class will return true if the Band in local memory matches the Band pulled from the database.
   * Example Input:  
-  
-> Local: "Green Day" , id is 1
-> Database: "Green Day" , id is 1
+> Local: "Green Day" , id is 1;
+> Database: "Green Day" , id is 1;
+
   * Example Output: `true`
 
 * The Save method for the Band class will save new bands to the database.
   * Example Input:  
-> New band: "Green Day", Save()
+> Save: "Green Day",
+
   * Example Output: no return value
 
 * The Save method for the Band class will assign an id to each new instance of the Band class.
   * Example Input:  
-  > New band: "Green Day" , `local id: 0`  
+> New band: "Green Day" ,`local id: 0`, Save();
+
   * Example Output:  
-  > "Green Day" , `database-assigned id`  
+> "Green Day" , `database-assigned id`  
 
 * The GetAll method for the Band class will return all band entries in the database in the form of a list.
   * Example Input:  
-  > "Green Day" , id is 10  
-  > "Spice Girl", id is 11  
+> "Green Day" , id is 10 ; Save();"Spice Girl", id is 11 ; Save(); GetAll()
+
   * Example Output: `{Green Day object}, {Spice Girl object}`
 
 * The Find method for the Band class will return the Band as defined in the database.
   * Example Input:
-  > "Green Day"
+> "Green Day"
+
   * Example Output:
-  > "Green Day" , `database-assigned id`
+> "Green Day" , `database-assigned id`
 
 * The Update method for the Band class will return the Band with the new band name and instructions.
   * Example Input:
-  > "Green Day" , id is 1
-  * Example Output:
-  > "Yellow Day" , id is 1
+> "Green Day" , id is 1; Update("Yellow Day");
 
-The DeleteThis method for the Band class will delete the band from the list of Band.
-* Example Input:
-  > DeleteThis "Green Day", GetAll()
-* Example Output:
-  > `{No Doubt object}, {Spice Girl object}`
+  * Example Output:
+> "Yellow Day" , id is 1
+
+* The DeleteThis method for the Band class will delete the band from the list of Band.
+  * Example Input:
+> DeleteThis "Green Day"; GetAll()
+
+  * Example Output:
+> `{No Doubt object}, {Spice Girl object}`
 
 * The Search method for the Band class will return a list of Bands with matched name.
   * Example Input:
-  > Search "Green Day"
+> Search ("Green Day")
+
   * Example Output:
-  > "Green Day" , id is 1
+> "Green Day" , id is 1
 
 
 
