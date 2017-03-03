@@ -1,0 +1,174 @@
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using Xunit;
+
+
+namespace BandTrackerApp
+{
+  public class BandTest: IDisposable
+  {
+    public BandTest()
+    {
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
+    }
+
+    public void Dispose()
+    {
+      Band.DeleteAll();
+      Venue.DeleteAll();
+    }
+
+    [Fact]
+    public void GetAll_DatabaseEmptyAtFirst_ZeroOutput()
+    {
+      //Arrange, Act
+      int result = Band.GetAll().Count;
+
+      //Assert
+      Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void OverrideBool_SameBand_ReturnsEqual()
+    {
+      //Arrange, Act
+      Band bandOne = new Band ("Peasant");
+      Band bandTwo = new Band ("Peasant");
+
+      //Assert
+      Assert.Equal(bandTwo, bandOne);
+    }
+
+    [Fact]
+    public void Save_OneBand_BandSavedToDatabase()
+    {
+      //Arrange
+      Band testBand = new Band ("Peasant");
+
+      //Act
+      testBand.Save();
+      List<Band> output = Band.GetAll();
+      List<Band> verify = new List<Band>{testBand};
+
+      //Assert
+      Assert.Equal(verify, output);
+    }
+
+    [Fact]
+    public void Save_OneBand_BandSavedWithCorrectID()
+    {
+      //Arrange
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+      Band savedBand = Band.GetAll()[0];
+
+      //Act
+      int output = savedBand.GetId();
+      int verify = testBand.GetId();
+
+      //Assert
+      Assert.Equal(verify, output);
+    }
+
+    [Fact]
+    public void SaveGetAll_ManyBands_ReturnListOfBands()
+    {
+      //Arrange
+      Band bandOne = new Band ("Peasant");
+      bandOne.Save();
+      Band bandTwo = new Band ("Delicious");
+      bandTwo.Save();
+
+      //Act
+      List<Band> output = Band.GetAll();
+      List<Band> verify = new List<Band>{bandOne, bandTwo};
+
+      //Assert
+      Assert.Equal(verify, output);
+    }
+
+    [Fact]
+    public void Find_OneBandId_ReturnBandFromDatabase()
+    {
+      //Arrange
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+
+      //Act
+      Band foundBand = Band.Find(testBand.GetId());
+
+      //Assert
+      Assert.Equal(testBand, foundBand);
+    }
+
+    [Fact]
+    public void SearchName_Name_ReturnBandFromDatabase()
+    {
+      //Arrange
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+
+      //Act
+      List<Band> output = Band.SearchName("Peasant");
+      List<Band> verify = new List<Band>{testBand};
+
+      //Assert
+      Assert.Equal(verify, output);
+    }
+
+    [Fact]
+    public void AddVenue_OneBand_VenueAddedToJoinTable()
+    {
+      //Arrange
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+      Venue testVenue = new Venue("Pot Pie");
+      testVenue.Save();
+      testBand.AddVenue(testVenue);
+
+      //Act
+      List<Venue> output = testBand.GetVenues();
+      List<Venue> verify = new List<Venue>{testVenue};
+
+      //Assert
+      Assert.Equal(verify, output);
+    }
+
+    [Fact]
+    public void Band_Delete_RemoveObjectFromDatabase()
+    {
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+
+      testBand.DeleteThis();
+
+      Assert.Equal(0, Band.GetAll().Count);
+    }
+
+    [Fact]
+    public void Band_Update_UpdateDatabaseAndLocalObject()
+    {
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+
+      testBand.Update("Ultra Poor");
+      Band expectedBand = new Band("Ultra Poor", testBand.GetId());
+
+      Assert.Equal(expectedBand, Band.Find(testBand.GetId()));
+    }
+
+    [Fact]
+    public void Band_Save_NoSaveOnDuplicateBand()
+    {
+      Band testBand = new Band ("Peasant");
+      testBand.Save();
+      Band secondBand = new Band ("Peasant");
+      secondBand.Save();
+
+      Assert.Equal(1, Band.GetAll().Count);
+    }
+
+
+  }
+}
