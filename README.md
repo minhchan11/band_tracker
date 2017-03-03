@@ -1,7 +1,8 @@
 # Band Tracker Database
+****
 ### Site to view band booking and venue
 
-#### By _**Minh Phuong**_
+#### By Minh Phuong
 
 ## Description
 
@@ -63,7 +64,7 @@ This web application uses:
 * Razor
 * MSSQL & SSMS
 
-===
+****
 
 ### License
 
