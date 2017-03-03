@@ -212,19 +212,25 @@ This website will track bands and the venues where they've played concerts
 
 #### User Interface
 * The user can add a new Band using the "Add Band" form.
-  * Example Input: New Band: "Green Day", id is 1;
-  * Example Output: All Bands Page: "Green Day, No Doubt"
+  * Example Input:
+  New Band: "Green Day", id is 1;
+  * Example Output:
+  All Bands Page: "Green Day, No Doubt"
 
 * The user can add a new Venue using the "Add venue" form.
-  * Example Input: New venue: "Manhattan Square", id is 10;
-  * Example Output: All venues: "Manhattan Square", "Noodles", "Salt"
+  * Example Input:
+    New venue: "Manhattan Square", id is 10;
+  * Example Output:
+    All venues: "Manhattan Square", "Noodles", "Salt"
 
 * The user can click on any venue in the venues list to view the venue's details
-      * Example Input: *click* "Manhattan Square"
+  * Example Input:
+    *click* "Manhattan Square"
   * Example Output: "Manhattan Square", List of venue tags
 
 * The user can click on any band to view a list of all venues in that the band and it's tags.
-      * Example Input: *click* "Green Day"
+  * Example Input:
+    *click* "Green Day"
   * Example Output: "Green Day", list of venues in Green Day (eg Manhattan Square)
 
 * The user can edit a venue's venue name on the venue's page.
@@ -241,29 +247,33 @@ This website will track bands and the venues where they've played concerts
 
 * The user can edit a band's name on the band's page.
   * Example Input:  
-         *click* "Green Day"  
+   *click* "Green Day"  
   * Example Output: "Yellow Day"
 
 * The user can delete a band using a link on the band's page .
   * Example Input:  
-         *click* "Green Day"  
-         *delete click*  
+   *click* "Green Day"  
+   *delete click*  
   * Example Output: Return to Bands Page
 
 * The user can search using venue name for an venue using the search form.
-  * Example Input: *search* "Manhattan"
+  * Example Input:
+    *search* "Manhattan"
   * Example Output: "Manhattan Square"
 
 * The user can search using band name for an band using the search form.
-  * Example Input: *search* "Green"
+  * Example Input:
+    *search* "Green"
   * Example Output: "Green Day"
 
 * The user can add a venue to a band using selection form.
-  * Example Input: "Green Day" *add* "Manhattan Square"
+  * Example Input:
+    "Green Day" *add* "Manhattan Square"
   * Example Output: "Green Day", "Manhattan Square"
 
 * The user can add a band to a venue using a selection form.
-  * Example Input: "Manhattan Square" *add* "Green Day"
+  * Example Input:
+  "Manhattan Square" *add* "Green Day"
   * Example Output: "Manhattan Square", "Green Day"
 
 ## Support and contact details
