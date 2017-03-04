@@ -212,24 +212,24 @@ This website will track bands and the venues where they've played concerts
 
 #### User Interface
 * The user can add a new Band using the "Add Band" form.
-  * Example Input:
-  New Band: "Green Day", id is 1;
-  * Example Output:
+  * Example Input:  
+  New Band: "Green Day", id is 1; *add Band*
+  * Example Output:  
   All Bands Page: "Green Day, No Doubt"
 
 * The user can add a new Venue using the "Add venue" form.
-  * Example Input:
-    New venue: "Manhattan Square", id is 10;
-  * Example Output:
-    All venues: "Manhattan Square", "Noodles", "Salt"
+  * Example Input:  
+    New venue: "Manhattan Square", id is 10; *add Venue*
+  * Example Output:  
+    All venues: "Manhattan Square", "Park"
 
 * The user can click on any venue in the venues list to view the venue's details
-  * Example Input:
+  * Example Input:  
     *click* "Manhattan Square"
   * Example Output: "Manhattan Square", List of venue tags
 
 * The user can click on any band to view a list of all venues in that the band and it's tags.
-  * Example Input:
+  * Example Input:  
     *click* "Green Day"
   * Example Output: "Green Day", list of venues in Green Day (eg Manhattan Square)
 
@@ -246,7 +246,7 @@ This website will track bands and the venues where they've played concerts
   * Example Output: Return to Venues Page
 
 * The user can edit a band's name on the band's page.
-  * Example Input:  
+  * Example Input:    
    *click* "Green Day"  
   * Example Output: "Yellow Day"
 
@@ -262,37 +262,37 @@ This website will track bands and the venues where they've played concerts
   * Example Output: "Manhattan Square"
 
 * The user can search using band name for an band using the search form.
-  * Example Input:
+  * Example Input:  
     *search* "Green"
   * Example Output: "Green Day"
 
 * The user can add a venue to a band using selection form.
-  * Example Input:
+  * Example Input:  
     "Green Day" *add* "Manhattan Square"
   * Example Output: "Green Day", "Manhattan Square"
 
 * The user can remove a venue from a band using selection form.
-  * Example Input:
+  * Example Input:  
     "Green Day" *remove* "Manhattan Square"
   * Example Output: "Green Day", "Park"
 
 * The user can remove all venues from a band using selection form.
-  * Example Input:
+  * Example Input:  
     "Green Day" *remove all*
   * Example Output: "Green Day"
 
 * The user can add a band to a venue using a selection form.
-  * Example Input:
+  * Example Input:  
   "Manhattan Square" *add* "Green Day"
   * Example Output: "Manhattan Square", "Green Day"
 
 * The user can remove a band from a venue using selection form.
-  * Example Input:
+  * Example Input:  
     "Manhattan Square" *remove* "Green Day"
   * Example Output: "Manhattan Square", "Spice Girls"
 
 * The user can remove all venues from a band using selection form.
-  * Example Input:
+  * Example Input:  
     "Manhattan Square" *remove all*
   * Example Output: "Manhattan Square"
 
