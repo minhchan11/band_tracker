@@ -144,7 +144,7 @@ namespace BandTrackerApp
 
       Delete["venue/removeBand/{id}"] = parameters => {
         Venue foundVenue = Venue.Find(parameters.id);
-        foundVenue.DeleteBand(Venue.Find(Request.Form["remove-band"]));
+        foundVenue.DeleteBand(Band.Find(Request.Form["remove-band"]));
         var foundVenueBands = foundVenue.GetBands();
         Dictionary<string, object> model = ModelMaker();
         model.Add("venue",foundVenue);
