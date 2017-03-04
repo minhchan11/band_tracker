@@ -271,10 +271,30 @@ This website will track bands and the venues where they've played concerts
     "Green Day" *add* "Manhattan Square"
   * Example Output: "Green Day", "Manhattan Square"
 
+* The user can remove a venue from a band using selection form.
+  * Example Input:
+    "Green Day" *remove* "Manhattan Square"
+  * Example Output: "Green Day", "Park"
+
+* The user can remove all venues from a band using selection form.
+  * Example Input:
+    "Green Day" *remove all*
+  * Example Output: "Green Day"
+
 * The user can add a band to a venue using a selection form.
   * Example Input:
   "Manhattan Square" *add* "Green Day"
   * Example Output: "Manhattan Square", "Green Day"
+
+* The user can remove a band from a venue using selection form.
+  * Example Input:
+    "Manhattan Square" *remove* "Green Day"
+  * Example Output: "Manhattan Square", "Spice Girls"
+
+* The user can remove all venues from a band using selection form.
+  * Example Input:
+    "Manhattan Square" *remove all*
+  * Example Output: "Manhattan Square"
 
 ## Support and contact details
 
