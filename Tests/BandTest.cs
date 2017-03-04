@@ -210,6 +210,5 @@ namespace BandTrackerApp
       Assert.Equal(1, Band.GetAll().Count);
     }
 
-
   }
 }
